@@ -1,4 +1,4 @@
-package com.server.cocoapp.controllers.controllers;
+package com.server.cocoapp.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.test.movieApi.auth.entities.RefreshToken;
-import com.springboot.test.movieApi.auth.entities.User;
-import com.springboot.test.movieApi.auth.services.AuthService;
-import com.springboot.test.movieApi.auth.services.JwtService;
-import com.springboot.test.movieApi.auth.services.RefreshTokenService;
-import com.springboot.test.movieApi.auth.utils.AuthResponse;
-import com.springboot.test.movieApi.auth.utils.LoginRequest;
-import com.springboot.test.movieApi.auth.utils.RefreshTokenRequest;
-import com.springboot.test.movieApi.auth.utils.RegisterRequest;
+import com.server.cocoapp.auth.entities.RefreshToken;
+import com.server.cocoapp.auth.entities.User;
+import com.server.cocoapp.auth.services.AuthService;
+import com.server.cocoapp.auth.services.JwtService;
+import com.server.cocoapp.auth.services.RefreshTokenService;
+import com.server.cocoapp.auth.utils.AuthResponse;
+import com.server.cocoapp.auth.utils.LoginRequest;
+import com.server.cocoapp.auth.utils.RefreshTokenRequest;
+import com.server.cocoapp.auth.utils.RegisterRequest;
 
 @RestController
 @RequestMapping("/api/v1/auth")

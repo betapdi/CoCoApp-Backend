@@ -1,10 +1,10 @@
-package com.springboot.test.movieApi.services;
+package com.server.cocoapp.services;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-import com.springboot.test.movieApi.entities.Movie;
-import com.springboot.test.movieApi.repositories.MovieRepository;
+import com.server.cocoapp.entities.Movie;
+import com.server.cocoapp.repositories.MovieRepository;
 
 import lombok.AllArgsConstructor;
 

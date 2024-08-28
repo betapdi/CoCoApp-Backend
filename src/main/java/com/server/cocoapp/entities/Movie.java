@@ -1,4 +1,4 @@
-package com.springboot.test.movieApi.entities;
+package com.server.cocoapp.entities;
 
 import java.time.LocalDateTime;
 import java.util.List;

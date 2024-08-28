@@ -1,12 +1,12 @@
-package com.springboot.test.movieApi.controllers;
+package com.server.cocoapp.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.test.movieApi.entities.Movie;
-import com.springboot.test.movieApi.services.MovieService;
+import com.server.cocoapp.entities.Movie;
+import com.server.cocoapp.services.MovieService;
 
 import lombok.AllArgsConstructor;
 

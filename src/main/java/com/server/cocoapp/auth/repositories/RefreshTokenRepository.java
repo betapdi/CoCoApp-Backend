@@ -1,10 +1,10 @@
-package com.springboot.test.movieApi.auth.repositories;
+package com.server.cocoapp.auth.repositories;
 
 import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.springboot.test.movieApi.auth.entities.RefreshToken;
+import com.server.cocoapp.auth.entities.RefreshToken;
 
 public interface RefreshTokenRepository extends MongoRepository<RefreshToken, String> {
     
