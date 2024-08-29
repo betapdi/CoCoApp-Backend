@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.server.cocoapp.auth.entities.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +20,9 @@ import lombok.NoArgsConstructor;
 public class Cart {
     @DBRef
     List<CartItem> items;
+
+    @DBRef
+    User user;
 
     public float getTotalPrices() {
         float answer = 0;
