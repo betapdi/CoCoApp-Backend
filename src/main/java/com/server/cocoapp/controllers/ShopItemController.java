@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.server.cocoapp.dto.ShopItemDto;
-import com.server.cocoapp.entities.ShopItem;
 import com.server.cocoapp.services.ShopItemService;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +28,7 @@ public class ShopItemController {
     private final ShopItemService shopItemService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<ShopItem>> fetchAllShopItems() {
+    public ResponseEntity<List<ShopItemDto>> fetchAllShopItems() {
         return ResponseEntity.ok(shopItemService.getAllShopItems());
     }
 

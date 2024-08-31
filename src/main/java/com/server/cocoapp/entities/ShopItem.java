@@ -53,6 +53,5 @@ public class ShopItem {
         if (shopItemDto.getDescription() != null) this.description = shopItemDto.getDescription();
         if (shopItemDto.getRating() != 0.0f) this.rating = shopItemDto.getRating();
         if (shopItemDto.getVotes() != 0) this.votes = shopItemDto.getVotes();
-        if (shopItemDto.getImageName() != null) this.imageName = shopItemDto.getImageName();
     }
 }

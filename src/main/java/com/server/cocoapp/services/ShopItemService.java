@@ -1,6 +1,7 @@
 package com.server.cocoapp.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -29,8 +30,19 @@ public class ShopItemService {
         this.fileService = fileService;
     }
 
-    public List<ShopItem> getAllShopItems() {
-        return shopItemRepository.findAll();
+    public List<ShopItemDto> getAllShopItems() {
+        List<ShopItem> shopItems = shopItemRepository.findAll();
+        List<ShopItemDto> shopItemDtos = new ArrayList<>();
+
+        for (ShopItem item : shopItems) {
+            ShopItemDto shopItemDto = new ShopItemDto();
+            BeanUtils.copyProperties(item, shopItemDto);
+            if (item.getImageName() != null) shopItemDto.setImageUrl(baseUrl + "/file/" + item.getImageName());
+
+            shopItemDtos.add(shopItemDto);
+        }
+
+        return shopItemDtos;
     }
 
     public ShopItemDto getShopItem(String shopItemId) {
@@ -39,7 +51,7 @@ public class ShopItemService {
 
         ShopItemDto shopItemDto = new ShopItemDto();
         BeanUtils.copyProperties(item, shopItemDto);
-        if (item.getImageName() != null) shopItemDto.setImageUrl(baseUrl + "/file/" + shopItemDto.getImageName());
+        if (item.getImageName() != null) shopItemDto.setImageUrl(baseUrl + "/file/" + item.getImageName());
 
         return shopItemDto;
     }

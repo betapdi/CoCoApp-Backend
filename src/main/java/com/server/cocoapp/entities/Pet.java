@@ -2,7 +2,12 @@ package com.server.cocoapp.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.server.cocoapp.auth.entities.User;
+import com.server.cocoapp.classes.PetStatus;
+import com.server.cocoapp.dto.PetDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,5 +44,22 @@ public class Pet {
     
     private float weight;
 
-    private byte[] image;
+    private PetStatus status;
+
+    private String imageName;
+
+    private String ownerId;
+
+    public void update(PetDto petDto) {
+        if (petDto.getId() != null) this.id = petDto.getId();
+        if (petDto.getPetName() != null) this.petName = petDto.getPetName();
+        if (petDto.getBreedName() != null) this.breedName = petDto.getBreedName();
+        if (petDto.getColor() != null) this.color = petDto.getColor();
+        if (petDto.getGender() != null) this.gender = petDto.getGender();
+        if (petDto.getHeight() != 0) this.height = petDto.getHeight();
+        if (petDto.getStatus() != null) this.status = petDto.getStatus();
+        if (petDto.getWeight() != 0) this.weight = petDto.getWeight();
+        if (petDto.getOwnerId() != null) this.ownerId = petDto.getOwnerId();
+        if (petDto.getAge() != 0) this.age = petDto.getAge();
+    }
 }
