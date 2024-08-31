@@ -13,11 +13,9 @@ import com.server.cocoapp.services.ShopItemService;
 
 import lombok.AllArgsConstructor;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.io.IOException;
 import java.util.List;
 
 
@@ -34,11 +32,13 @@ public class ShopItemController {
 
     @PostMapping("/add")
     public ResponseEntity<ShopItemDto> addShopItem(@RequestBody ShopItemDto shopItemDto) {
-        return ResponseEntity.ok(shopItemService.addShopItem(shopItemDto));
+        ShopItemDto response = shopItemService.addShopItem(shopItemDto);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteShopItem(@RequestBody ShopItemDto shopItemDto) throws IOException {
+    public ResponseEntity<String> deleteShopItem(@RequestBody ShopItemDto shopItemDto) {
         String response = shopItemService.deleteShopItem(shopItemDto);
 
         return new ResponseEntity<>(response, HttpStatus.OK);

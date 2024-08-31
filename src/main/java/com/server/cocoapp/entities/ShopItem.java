@@ -31,11 +31,14 @@ public class ShopItem {
 
     private float price;
 
-    private int stock;
+    @Builder.Default
+    private int stock = 100;
 
     private String description;
 
     private float rating;
     
     private int votes;
+    
+    private byte[] image;
 }

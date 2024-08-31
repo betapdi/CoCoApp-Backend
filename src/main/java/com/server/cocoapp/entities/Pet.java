@@ -38,4 +38,6 @@ public class Pet {
     private float height;
     
     private float weight;
+
+    private byte[] image;
 }
