@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.server.cocoapp.dto.ShopItemDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,5 +42,17 @@ public class ShopItem {
     
     private int votes;
     
-    private byte[] image;
+    private String imageName;
+
+    public void update(ShopItemDto shopItemDto) {
+        if (shopItemDto.getId() != null) this.id = shopItemDto.getId();
+        if (shopItemDto.getName() != null) this.name = shopItemDto.getName();
+        if (shopItemDto.getCategory() != null) this.category = shopItemDto.getCategory();
+        if (shopItemDto.getPrice() != 0.0f) this.price = shopItemDto.getPrice();
+        if (shopItemDto.getStock() != 0) this.stock = shopItemDto.getStock();
+        if (shopItemDto.getDescription() != null) this.description = shopItemDto.getDescription();
+        if (shopItemDto.getRating() != 0.0f) this.rating = shopItemDto.getRating();
+        if (shopItemDto.getVotes() != 0) this.votes = shopItemDto.getVotes();
+        if (shopItemDto.getImageName() != null) this.imageName = shopItemDto.getImageName();
+    }
 }

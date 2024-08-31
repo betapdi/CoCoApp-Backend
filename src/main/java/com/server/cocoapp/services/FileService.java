@@ -26,7 +26,14 @@ public class FileService {
 
         Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
         return fileName;
-    }   
+    }  
+    
+    public String deleteFile(String path, String fileName) throws IOException {
+        String filePath = path + File.separator + fileName;
+        Files.deleteIfExists(Paths.get(filePath));
+
+        return "File deleted: " + fileName;
+    }
     
     public InputStream getResoureFile(String path, String fileName) throws IOException {
         String filePath = path + File.separator + fileName;

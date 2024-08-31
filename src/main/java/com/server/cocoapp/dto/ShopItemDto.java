@@ -18,6 +18,8 @@ public class ShopItemDto {
     private String description;
     private float rating;
     private int votes;
+    private String imageName;
+    private String imageUrl;
 
     // Constructors, getters, setters (or use Lombok annotations)
 
