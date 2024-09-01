@@ -13,6 +13,7 @@ import com.server.cocoapp.auth.repositories.UserRepository;
 import com.server.cocoapp.auth.utils.AuthResponse;
 import com.server.cocoapp.auth.utils.LoginRequest;
 import com.server.cocoapp.auth.utils.RegisterRequest;
+import com.server.cocoapp.repositories.CartRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +26,8 @@ public class AuthService {
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
     private final AuthenticationManager authenticationManager;
+
+    private final CartRepository cartRepository;
     
     public AuthResponse register(RegisterRequest registerRequest) {
         var user = User.builder()
@@ -34,6 +37,9 @@ public class AuthService {
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(UserRole.USER)
                 .build();
+
+        user.getCart().setUserId(user.getUserId());
+        cartRepository.save(user.getCart());
 
         User savedUser = userRepository.save(user);
         var accessToken = jwtService.generateToken(savedUser);

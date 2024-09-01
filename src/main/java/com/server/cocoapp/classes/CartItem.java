@@ -1,9 +1,8 @@
-package com.server.cocoapp.entities;
+package com.server.cocoapp.classes;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.server.cocoapp.entities.ShopItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,16 +13,11 @@ import lombok.Setter;
 
 @Builder
 @Data
-@Document
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class CartItem {
-    @Id
-    @Indexed
-    private String id;
-
     @DBRef
     private ShopItem item;
 

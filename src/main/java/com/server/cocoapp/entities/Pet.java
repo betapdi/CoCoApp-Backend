@@ -2,10 +2,8 @@ package com.server.cocoapp.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.server.cocoapp.auth.entities.User;
 import com.server.cocoapp.classes.PetStatus;
 import com.server.cocoapp.dto.PetDto;
 

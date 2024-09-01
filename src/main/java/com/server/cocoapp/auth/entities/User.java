@@ -19,6 +19,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.server.cocoapp.entities.Cart;
 import com.server.cocoapp.entities.Pet;
 
@@ -74,6 +75,7 @@ public class User implements UserDetails {
     private boolean isCredentialsNonExpired = true;
 
     @Builder.Default
+    @DBRef
     private Cart cart = new Cart();
 
     @Override

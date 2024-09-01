@@ -1,11 +1,13 @@
 package com.server.cocoapp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.server.cocoapp.auth.entities.User;
+import com.server.cocoapp.classes.CartItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,18 +20,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cart {
+    @Id
+    String id;
+
     @DBRef
     List<CartItem> items;
 
-    @DBRef
-    User user;
+    String userId;
 
-    public float getTotalPrices() {
-        float answer = 0;
-        for (CartItem cartItem : items) {
-            answer += cartItem.getQuantity() * cartItem.getItem().getPrice();
-        }
-
-        return answer;
+    public Cart(String userId) {
+        this.userId = userId;
+        items = new ArrayList<>();
     }
 }
