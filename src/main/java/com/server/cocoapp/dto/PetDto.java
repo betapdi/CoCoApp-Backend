@@ -1,8 +1,5 @@
 package com.server.cocoapp.dto;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
-import com.server.cocoapp.auth.entities.User;
 import com.server.cocoapp.classes.PetStatus;
 
 import lombok.AllArgsConstructor;
