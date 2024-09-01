@@ -22,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.server.cocoapp.entities.Cart;
 import com.server.cocoapp.entities.Pet;
+import com.server.cocoapp.entities.Review;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -61,6 +62,10 @@ public class User implements UserDetails {
     @DBRef
     @Builder.Default
     private List<Pet> pets = new ArrayList<>();
+
+    @DBRef
+    @Builder.Default
+    private List<Review> reviews = new ArrayList<>();
 
     @Builder.Default 
     private boolean isEnabled = true;

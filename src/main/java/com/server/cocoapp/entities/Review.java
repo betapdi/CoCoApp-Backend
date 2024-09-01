@@ -31,7 +31,7 @@ public class Review {
 
     Integer rating;
 
-    void update(ReviewDto dto) {
+    public void update(ReviewDto dto) {
         if (dto.getDetail() != null) detail = dto.getDetail();
         if (dto.getLocationId() != null) detail = dto.getLocationId();
         if (dto.getRating() != 0) rating = dto.getRating();

@@ -19,7 +19,7 @@ public class ReviewDto {
     String detail;
     Integer rating;
 
-    void update(Review rev) {
+    public void update(Review rev) {
         if (rev.getId() != null) id = rev.getId();
         if (rev.getDetail() != null) detail = rev.getDetail();
         if (rev.getLocationId() != null) detail = rev.getLocationId();
