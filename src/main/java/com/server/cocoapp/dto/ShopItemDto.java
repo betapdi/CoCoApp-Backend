@@ -1,5 +1,10 @@
 package com.server.cocoapp.dto;
 
+import java.util.List;
+
+import com.server.cocoapp.entities.Review;
+import com.server.cocoapp.entities.ShopItem;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,21 +22,31 @@ public class ShopItemDto {
     private int stock;
     private String description;
     private float rating;
-    private int votes;
+    private Integer votes;
     private String imageUrl;
+
+    private List<Review> reviews;
 
     // Constructors, getters, setters (or use Lombok annotations)
 
-    @Override
-    public String toString() {
-        return "{" +
-                "name='" + name + '\'' +
-                ", category='" + category + '\'' +
-                ", price=" + price +
-                ", stock=" + stock +
-                ", description='" + description + '\'' +
-                ", rating=" + rating +
-                ", votes=" + votes +
-                '}';
+    public void update(ShopItem item) {
+        if (item.getId() != null) this.id = item.getId();
+        if (item.getName() != null) this.name = item.getName();
+        if (item.getCategory() != null) this.category = item.getCategory();
+        if (item.getPrice() != 0) this.price = item.getPrice();
+        if (item.getStock() != 0) this.stock = item.getStock();
+        if (item.getDescription() != null) this.description = item.getDescription();
+
+        if (item.getReviews() != null) {
+            float sumRating = 0;
+            votes = item.getReviews().size();
+
+            for (Review review : item.getReviews()) {
+                sumRating += review.getRating();
+                reviews.add(review);
+            }
+
+            rating = sumRating / votes;
+        }
     }
 }

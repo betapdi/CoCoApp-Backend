@@ -25,7 +25,10 @@ public class Review {
     String id;
 
     @NonNull
-    String locationId;
+    String targetId;
+
+    @NonNull
+    String type;
     
     String detail;
 
@@ -33,7 +36,8 @@ public class Review {
 
     public void update(ReviewDto dto) {
         if (dto.getDetail() != null) detail = dto.getDetail();
-        if (dto.getLocationId() != null) detail = dto.getLocationId();
+        if (dto.getTargetId() != null) targetId = dto.getTargetId();
+        if (dto.getType() != null) type = dto.getType();
         if (dto.getRating() != 0) rating = dto.getRating();
     }
 }

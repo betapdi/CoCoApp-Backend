@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +35,7 @@ public class ShopItemService {
 
         for (ShopItem item : shopItems) {
             ShopItemDto shopItemDto = new ShopItemDto();
-            BeanUtils.copyProperties(item, shopItemDto);
+            shopItemDto.update(item);
             if (item.getImageName() != null) shopItemDto.setImageUrl(baseUrl + "/file/" + item.getImageName());
 
             shopItemDtos.add(shopItemDto);
@@ -50,7 +49,7 @@ public class ShopItemService {
                     .orElseThrow(() -> new ShopItemNotFoundException("ShopItem not found!"));
 
         ShopItemDto shopItemDto = new ShopItemDto();
-        BeanUtils.copyProperties(item, shopItemDto);
+        shopItemDto.update(item);
         if (item.getImageName() != null) shopItemDto.setImageUrl(baseUrl + "/file/" + item.getImageName());
 
         return shopItemDto;
@@ -59,7 +58,7 @@ public class ShopItemService {
     public ShopItemDto addShopItem(ShopItemDto shopItemDto, MultipartFile file) throws IOException {
         ShopItem newItem = new ShopItem();
 
-        BeanUtils.copyProperties(shopItemDto, newItem);
+        newItem.update(shopItemDto);
 
         if (file != null) {
             String fileName = fileService.uploadFile(path, file);
@@ -69,7 +68,7 @@ public class ShopItemService {
         shopItemRepository.save(newItem);
 
         ShopItemDto newShopItemDto = new ShopItemDto();
-        BeanUtils.copyProperties(newItem, newShopItemDto);
+        newShopItemDto.update(newItem);
         
         if (newItem.getImageName() != null) {
             String imageUrl = baseUrl + "/file/" + newItem.getImageName();
@@ -107,7 +106,7 @@ public class ShopItemService {
         shopItemRepository.save(item);
 
         ShopItemDto newShopItemDto = new ShopItemDto();
-        BeanUtils.copyProperties(item, newShopItemDto);
+        newShopItemDto.update(item);
         
         String imageUrl = baseUrl + "/file/" + item.getImageName();
         newShopItemDto.setImageUrl(imageUrl);

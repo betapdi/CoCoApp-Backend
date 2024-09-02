@@ -1,5 +1,8 @@
 package com.server.cocoapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -38,20 +41,16 @@ public class ShopItem {
 
     private String description;
 
-    private float rating;
-    
-    private int votes;
+    @Builder.Default
+    List<Review> reviews = new ArrayList<>();
     
     private String imageName;
 
     public void update(ShopItemDto shopItemDto) {
-        if (shopItemDto.getId() != null) this.id = shopItemDto.getId();
         if (shopItemDto.getName() != null) this.name = shopItemDto.getName();
         if (shopItemDto.getCategory() != null) this.category = shopItemDto.getCategory();
-        if (shopItemDto.getPrice() != 0.0f) this.price = shopItemDto.getPrice();
+        if (shopItemDto.getPrice() != 0) this.price = shopItemDto.getPrice();
         if (shopItemDto.getStock() != 0) this.stock = shopItemDto.getStock();
         if (shopItemDto.getDescription() != null) this.description = shopItemDto.getDescription();
-        if (shopItemDto.getRating() != 0.0f) this.rating = shopItemDto.getRating();
-        if (shopItemDto.getVotes() != 0) this.votes = shopItemDto.getVotes();
     }
 }
