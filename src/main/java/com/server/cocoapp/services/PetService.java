@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,6 +50,22 @@ public class PetService {
         return petDtos;
     } 
 
+    public List<PetDto> getAllPetsUser(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        List<Pet> pets = user.getPets();
+        List<PetDto> petDtos = new ArrayList<>();
+        
+        for (Pet currPet : pets) {
+            PetDto petDto = new PetDto();
+            petDto.update(currPet);
+
+            if (currPet.getImageName() != null) petDto.setImageUrl(baseUrl + "/file/" + currPet.getImageName());
+            petDtos.add(petDto);
+        }
+
+        return petDtos;
+    } 
+
     public PetDto getPet(String petId) {
         Pet currPet = petRepository.findById(petId).orElseThrow(() -> new PetNotFoundException("Pet not found!"));
         
@@ -81,6 +96,7 @@ public class PetService {
 
         PetDto response = new PetDto();
         
+        response.update(newPet);
         
         if (newPet.getImageName() != null) {
             response.setImageUrl(baseUrl + "/file/" + newPet.getImageName());
@@ -118,7 +134,7 @@ public class PetService {
         petRepository.save(currPet);
 
         PetDto newPetDto = new PetDto();
-        BeanUtils.copyProperties(currPet, newPetDto);
+        newPetDto.update(currPet);
         
         if (currPet.getImageName() != null) newPetDto.setImageUrl(baseUrl + "/file/" + currPet.getImageName());
         return newPetDto;

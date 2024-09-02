@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.server.cocoapp.auth.entities.User;
 import com.server.cocoapp.dto.PetDto;
 import com.server.cocoapp.services.PetService;
 
@@ -20,6 +21,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.IOException;
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -32,6 +35,11 @@ public class PetController {
     @GetMapping("/getAll")
     public ResponseEntity<List<PetDto>> fetchAllPets() {
         return ResponseEntity.ok(PetService.getAllPets());
+    }
+
+    @GetMapping("/getAllUser")
+    public ResponseEntity<List<PetDto>> fetchAllPetsUser(@AuthenticationPrincipal UserDetails userDetails) {
+        return ResponseEntity.ok(PetService.getAllPetsUser(userDetails.getUsername()));
     }
 
     @GetMapping("/get")
