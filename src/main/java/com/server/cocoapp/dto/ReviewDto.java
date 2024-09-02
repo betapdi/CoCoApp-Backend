@@ -13,16 +13,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReviewDto {
-    String id;
+    private String id;
 
     @NonNull
-    String type;
+    private String type;
 
     @NonNull
-    String targetId;
+    private String targetId;
 
-    String detail;
-    Integer rating;
+    private String detail;
+    private Integer rating;
 
     public void update(Review rev) {
         if (rev.getId() != null) id = rev.getId();

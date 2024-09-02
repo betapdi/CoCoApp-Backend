@@ -42,7 +42,7 @@ public class PetService {
         
         for (Pet currPet : pets) {
             PetDto petDto = new PetDto();
-            BeanUtils.copyProperties(currPet, petDto);
+            petDto.update(currPet);
 
             if (currPet.getImageName() != null) petDto.setImageUrl(baseUrl + "/file/" + currPet.getImageName());
             petDtos.add(petDto);
@@ -55,7 +55,7 @@ public class PetService {
         Pet currPet = petRepository.findById(petId).orElseThrow(() -> new PetNotFoundException("Pet not found!"));
         
         PetDto petDto = new PetDto();
-        BeanUtils.copyProperties(currPet, petDto);
+        petDto.update(currPet);
         if (currPet.getImageName() != null) {
             petDto.setImageUrl(baseUrl + "/file/" + currPet.getImageName());
         }
@@ -66,7 +66,7 @@ public class PetService {
     public PetDto addPet(PetDto petDto, MultipartFile file, String username) throws IOException {
         User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
         Pet newPet = new Pet();
-        BeanUtils.copyProperties(petDto, newPet);
+        newPet.update(petDto);
 
         user.getPets().add(newPet);
         newPet.setOwnerId(user.getUserId());
@@ -80,7 +80,7 @@ public class PetService {
         userRepository.save(user);
 
         PetDto response = new PetDto();
-        BeanUtils.copyProperties(newPet, response);
+        
         
         if (newPet.getImageName() != null) {
             response.setImageUrl(baseUrl + "/file/" + newPet.getImageName());

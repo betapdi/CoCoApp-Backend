@@ -43,13 +43,12 @@ public class Pet {
     private float weight;
 
     private PetStatus status;
-
+ 
+    private String ownerId;
+    
     private String imageName;
 
-    private String ownerId;
-
     public void update(PetDto petDto) {
-        if (petDto.getId() != null) this.id = petDto.getId();
         if (petDto.getPetName() != null) this.petName = petDto.getPetName();
         if (petDto.getBreedName() != null) this.breedName = petDto.getBreedName();
         if (petDto.getColor() != null) this.color = petDto.getColor();

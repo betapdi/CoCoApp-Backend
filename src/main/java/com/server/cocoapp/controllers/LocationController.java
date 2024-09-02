@@ -29,7 +29,7 @@ public class LocationController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<LocationDto>> getMethodName(@RequestParam String param) {
+    public ResponseEntity<List<LocationDto>> getAll() {
         List<LocationDto> response = locationService.getAllLocations();
 
         return new ResponseEntity<>(response, HttpStatus.OK);

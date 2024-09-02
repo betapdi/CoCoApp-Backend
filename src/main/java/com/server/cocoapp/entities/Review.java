@@ -1,6 +1,7 @@
 package com.server.cocoapp.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.server.cocoapp.dto.ReviewDto;
@@ -22,17 +23,18 @@ import lombok.Setter;
 @Setter
 public class Review {
     @Id
-    String id;
+    @Indexed
+    private String id;
 
     @NonNull
-    String targetId;
+    private String targetId;
 
     @NonNull
-    String type;
+    private String type;
     
-    String detail;
+    private String detail;
 
-    Integer rating;
+    private Integer rating;
 
     public void update(ReviewDto dto) {
         if (dto.getDetail() != null) detail = dto.getDetail();
