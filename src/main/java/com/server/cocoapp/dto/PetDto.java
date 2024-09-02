@@ -1,5 +1,7 @@
 package com.server.cocoapp.dto;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.server.cocoapp.classes.PetStatus;
 import com.server.cocoapp.entities.Pet;
 
@@ -22,6 +24,8 @@ public class PetDto {
     private float height;
     private float weight;
     private PetStatus status;
+
+    @Value("${base.url}")
     private String imageUrl;
 
     private String ownerId;
@@ -43,5 +47,9 @@ public class PetDto {
         if (pet.getAge() != 0) this.age = pet.getAge();
         if (pet.getNorthCoordinate() != 0) this.northCoordinate = pet.getNorthCoordinate();
         if (pet.getEastCoordinate() != 0) this.eastCoordinate = pet.getEastCoordinate();
+
+        if (pet.getImageName() != null) {
+            imageUrl += "/file/" + pet.getImageName(); 
+        }
     }
 }

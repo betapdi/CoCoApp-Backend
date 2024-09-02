@@ -4,6 +4,8 @@ package com.server.cocoapp.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.server.cocoapp.entities.Location;
 import com.server.cocoapp.entities.Review;
 
@@ -29,6 +31,8 @@ public class LocationDto {
     private float votes;
 
     List<ReviewDto> reviews;
+
+    @Value("${base.url}")
     String imageUrl;
 
     public void update(Location loc) {
@@ -55,6 +59,10 @@ public class LocationDto {
             }
 
             rating = sumRating / votes;
+        }
+
+        if (loc.getImageName() != null) {
+            imageUrl += "/file/" + loc.getImageName(); 
         }
     }
 }

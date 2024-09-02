@@ -2,6 +2,8 @@ package com.server.cocoapp.dto;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.server.cocoapp.entities.Review;
 import com.server.cocoapp.entities.ShopItem;
 
@@ -23,6 +25,8 @@ public class ShopItemDto {
     private String description;
     private float rating;
     private Integer votes;
+
+    @Value("${base.url}")
     private String imageUrl;
 
     private List<Review> reviews;
@@ -47,6 +51,10 @@ public class ShopItemDto {
             }
 
             rating = sumRating / votes;
+        }
+
+        if (item.getImageName() != null) {
+            imageUrl += "/file/" + item.getImageName(); 
         }
     }
 }

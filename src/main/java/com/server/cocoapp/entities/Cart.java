@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.server.cocoapp.classes.CartItem;
+import com.server.cocoapp.dto.CartDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,15 +24,11 @@ import lombok.NoArgsConstructor;
 public class Cart {
     @Id
     @Indexed
-    String id;
+    private String id;
 
     @DBRef
-    List<CartItem> items;
+    @Builder.Default
+    private List<CartItem> items = new ArrayList<>();
 
-    String userId;
-
-    public Cart(String userId) {
-        this.userId = userId;
-        items = new ArrayList<>();
-    }
+    private String userId;
 }
