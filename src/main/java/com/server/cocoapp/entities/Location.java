@@ -30,6 +30,8 @@ public class Location {
     private String id;
 
     private String name;
+
+    private String imageName;
     
     @DBRef
     @Builder.Default

@@ -29,6 +29,7 @@ public class LocationDto {
     private float votes;
 
     List<ReviewDto> reviews;
+    String imageUrl;
 
     public void update(Location loc) {
         if (loc.getEndDate() != 0) endDate = loc.getEndDate();
