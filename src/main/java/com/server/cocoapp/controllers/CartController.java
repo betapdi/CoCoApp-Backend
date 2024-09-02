@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.server.cocoapp.classes.CartItem;
 import com.server.cocoapp.dto.CartDto;
+import com.server.cocoapp.dto.CartItemDto;
 import com.server.cocoapp.services.CartService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -31,15 +31,15 @@ public class CartController {
     }
 
     @PostMapping("/addItem")
-    public ResponseEntity<CartDto> addCartItem(@AuthenticationPrincipal UserDetails userDetails, @RequestPart CartItem cartItem) {
-        CartDto response = cartService.addCartItem(userDetails.getUsername(), cartItem);
+    public ResponseEntity<CartDto> addCartItem(@AuthenticationPrincipal UserDetails userDetails, @RequestPart CartItemDto cartItemDto) {
+        CartDto response = cartService.addCartItem(userDetails.getUsername(), cartItemDto);
         
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/updateItem")
-    public ResponseEntity<CartDto> updateCartItem(@AuthenticationPrincipal UserDetails userDetails, @RequestPart CartItem cartItem) {
-        CartDto response = cartService.updateCartItem(userDetails.getUsername(), cartItem);
+    public ResponseEntity<CartDto> updateCartItem(@AuthenticationPrincipal UserDetails userDetails, @RequestPart CartItemDto cartItemDto) {
+        CartDto response = cartService.updateCartItem(userDetails.getUsername(), cartItemDto);
         
         return new ResponseEntity<>(response, HttpStatus.OK);
     }    

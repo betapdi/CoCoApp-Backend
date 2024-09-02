@@ -1,8 +1,5 @@
 package com.server.cocoapp.services;
 
-import java.io.IOException;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.server.cocoapp.auth.entities.User;
@@ -13,17 +10,14 @@ import com.server.cocoapp.dto.CartItemDto;
 import com.server.cocoapp.entities.ShopItem;
 import com.server.cocoapp.exceptions.ShopItemNotFoundException;
 import com.server.cocoapp.exceptions.UserNotFoundException;
-import com.server.cocoapp.repositories.CartRepository;
 import com.server.cocoapp.repositories.ShopItemRepository;
 
 @Service
 public class CartService {
-    private final CartRepository cartRepository;
     private final UserRepository userRepository;
     private final ShopItemRepository shopItemRepository;
 
-    public CartService(CartRepository cartRepository, UserRepository userRepository, ShopItemRepository shopItemRepository) {
-        this.cartRepository = cartRepository;
+    public CartService(UserRepository userRepository, ShopItemRepository shopItemRepository) {
         this.userRepository = userRepository;
         this.shopItemRepository = shopItemRepository;
     }

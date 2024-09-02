@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.server.cocoapp.classes.CartItem;
-import com.server.cocoapp.dto.CartDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
