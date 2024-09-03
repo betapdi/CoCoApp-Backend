@@ -21,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.server.cocoapp.entities.Cart;
 import com.server.cocoapp.entities.CartHistory;
+import com.server.cocoapp.entities.Notification;
 import com.server.cocoapp.entities.Pet;
 import com.server.cocoapp.entities.Review;
 
@@ -42,7 +43,6 @@ public class User implements UserDetails {
     private String name;
 
     @NotBlank(message = "The userName field can't be blank")
-    @Indexed(unique = true)
     private String username;
     
     @NotBlank(message = "The email field can't be blank")
@@ -66,6 +66,10 @@ public class User implements UserDetails {
     @DBRef
     @Builder.Default
     private List<Review> reviews = new ArrayList<>();
+
+    @DBRef
+    @Builder.Default
+    private List<Notification> notifications = new ArrayList<>();
 
     @Builder.Default 
     private boolean isEnabled = true;

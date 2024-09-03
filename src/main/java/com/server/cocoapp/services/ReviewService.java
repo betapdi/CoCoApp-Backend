@@ -62,27 +62,26 @@ public class ReviewService {
         
         Review review = new Review();
         review.update(reviewDto);
+        Review savedReview = reviewRepository.save(review);
         
-        user.getReviews().add(review);
-        
+        user.getReviews().add(savedReview);
         userRepository.save(user);
-        reviewRepository.save(review);
 
         if (reviewDto.getType().equals("location")) {
             Location location = locationRepository.findById(reviewDto.getTargetId()).orElseThrow(() -> new LocationNotFoundException("Location not found!"));
-            location.getReviews().add(review);
+            location.getReviews().add(savedReview);
             locationRepository.save(location);
         }
 
         else {
             ShopItem shopItem = shopItemRepository.findById(reviewDto.getTargetId()).orElseThrow(() -> new ShopItemNotFoundException("ShopItem not found!"));
-            shopItem.getReviews().add(review);
+            shopItem.getReviews().add(savedReview);
             shopItemRepository.save(shopItem);
         }
 
 
         ReviewDto dto = new ReviewDto();
-        dto.update(review);
+        dto.update(savedReview);
 
         return dto;
     }
@@ -132,25 +131,26 @@ public class ReviewService {
 
         //update
         review.update(reviewDto);
+        Review savedReview = reviewRepository.save(review);
 
         //rewrite a new one
-        user.getReviews().add(review);
+        user.getReviews().add(savedReview);
         userRepository.save(user);
 
         if (review.getType().equals("location")) {
             Location location = locationRepository.findById(review.getTargetId()).orElseThrow(() -> new LocationNotFoundException("Location not found!"));
-            location.getReviews().add(review);
+            location.getReviews().add(savedReview);
             locationRepository.save(location);
         }
 
         else {
             ShopItem shopItem = shopItemRepository.findById(review.getTargetId()).orElseThrow(() -> new ShopItemNotFoundException("ShopItem not found!"));
-            shopItem.getReviews().add(review);
+            shopItem.getReviews().add(savedReview);
             shopItemRepository.save(shopItem);
         }
 
         ReviewDto dto = new ReviewDto();
-        dto.update(review);
+        dto.update(savedReview);
 
         return dto;
     }
