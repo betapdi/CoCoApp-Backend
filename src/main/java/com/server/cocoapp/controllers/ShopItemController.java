@@ -2,6 +2,7 @@ package com.server.cocoapp.controllers;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -32,8 +33,8 @@ public class ShopItemController {
         return ResponseEntity.ok(shopItemService.getAllShopItems());
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<ShopItemDto> getShopItem(@RequestPart("shopItemId") String shopItemId) {
+    @GetMapping("/get/{shopItemId}")
+    public ResponseEntity<ShopItemDto> getShopItem(@PathVariable("shopItemId") String shopItemId) {
         ShopItemDto response = shopItemService.getShopItem(shopItemId);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -48,8 +49,8 @@ public class ShopItemController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteShopItem(@RequestPart("shopItemId") String shopItemId) throws IOException {
+    @DeleteMapping("/delete/{shopItemId}")
+    public ResponseEntity<String> deleteShopItem(@PathVariable("shopItemId") String shopItemId) throws IOException {
         String response = shopItemService.deleteShopItem(shopItemId);
 
         return new ResponseEntity<>(response, HttpStatus.OK);

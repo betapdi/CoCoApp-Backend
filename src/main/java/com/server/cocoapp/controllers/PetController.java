@@ -2,6 +2,7 @@ package com.server.cocoapp.controllers;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -33,13 +34,13 @@ public class PetController {
         return ResponseEntity.ok(PetService.getAllPets());
     }
 
-    @GetMapping("/getAllUser")
+    @GetMapping("/getAllPetsUser")
     public ResponseEntity<List<PetDto>> fetchAllPetsUser(@AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(PetService.getAllPetsUser(userDetails.getUsername()));
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<PetDto> getPet(@RequestPart("petId") String petId) {
+    @GetMapping("/get/{petId}")
+    public ResponseEntity<PetDto> getPet(@PathVariable("petId") String petId) {
         PetDto response = PetService.getPet(petId);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -55,8 +56,8 @@ public class PetController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deletePet(@RequestPart("petId") String petId,
+    @DeleteMapping("/delete/{petId}")
+    public ResponseEntity<String> deletePet(@PathVariable("petId") String petId,
                                             @AuthenticationPrincipal UserDetails userDetails) throws IOException {
         String response = PetService.deletePet(petId, userDetails.getUsername());
 

@@ -93,11 +93,11 @@ public class LocationService {
         
         location.update(locationDto);
 
-        if (location.getImageName() != null) {
-            fileService.deleteFile(path, location.getImageName());
-        }
-
         if (file != null) {
+            if (location.getImageName() != null) {
+                fileService.deleteFile(path, location.getImageName());
+            }
+
             String fileName = fileService.uploadFile(path, file);
             location.setImageName(fileName);
         }

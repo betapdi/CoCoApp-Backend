@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.server.cocoapp.dto.ReviewDto;
 import com.server.cocoapp.services.ReviewService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestPart;
 
 import java.util.List;
@@ -41,8 +42,8 @@ public class ReviewController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     
-    @PostMapping("/delete")
-    public ResponseEntity<String> deleteReview(@AuthenticationPrincipal UserDetails userDetails, @RequestPart String reviewId) {
+    @PostMapping("/delete/{reviewId}")
+    public ResponseEntity<String> deleteReview(@AuthenticationPrincipal UserDetails userDetails, @PathVariable("reviewId") String reviewId) {
         String response = reviewService.deleteReview(userDetails.getUsername(), reviewId);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
