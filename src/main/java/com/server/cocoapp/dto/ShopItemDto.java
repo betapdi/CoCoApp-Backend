@@ -9,7 +9,6 @@ import com.server.cocoapp.entities.Review;
 import com.server.cocoapp.entities.ShopItem;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

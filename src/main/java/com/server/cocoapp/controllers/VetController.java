@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.server.cocoapp.classes.Appointment;
 import com.server.cocoapp.dto.VetDto;
 import com.server.cocoapp.services.VetService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import java.util.List;
 import java.io.IOException;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -64,8 +67,17 @@ public class VetController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     
+    @PostMapping("/addAppointment")
+    public ResponseEntity<String> addAppointment(@RequestPart("appointment") Appointment appointment) {
+        String response = vetService.addAppointment(appointment);
+        
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
     
-
-
-    
+    @GetMapping("/getAppointments/{vetId}")
+    public ResponseEntity<List<Appointment>> addAppointment(@PathVariable("vetId") String vetId) {
+        List<Appointment> response = vetService.getListAppointments(vetId);
+        
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

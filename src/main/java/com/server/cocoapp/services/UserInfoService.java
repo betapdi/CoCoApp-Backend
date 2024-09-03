@@ -11,7 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.server.cocoapp.auth.entities.User;
 import com.server.cocoapp.auth.repositories.UserRepository;
+import com.server.cocoapp.classes.Appointment;
+import com.server.cocoapp.dto.PetDto;
+import com.server.cocoapp.dto.ReviewDto;
 import com.server.cocoapp.dto.UserDto;
+import com.server.cocoapp.entities.Pet;
+import com.server.cocoapp.entities.Review;
 import com.server.cocoapp.exceptions.UserNotFoundException;
 
 
@@ -38,6 +43,39 @@ public class UserInfoService {
         response.update(user);
 
         return response;
+    }
+
+    public List<PetDto> getPets(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        List<PetDto> dtos = new ArrayList<>();
+
+        for (Pet pet : user.getPets()) {
+            PetDto dto = new PetDto();
+            dto.update(pet);
+
+            dtos.add(dto);
+        }
+
+        return dtos;
+    }
+
+    public List<ReviewDto> getReviews(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        List<ReviewDto> dtos = new ArrayList<>();
+
+        for (Review review : user.getReviews()) {
+            ReviewDto dto = new ReviewDto();
+            dto.update(review);
+
+            dtos.add(dto);
+        }
+
+        return dtos;
+    }
+
+    public List<Appointment> getAppointments(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        return user.getAppointments();
     }
 
     public UserDto updateUserInfo(UserDto userDto, MultipartFile file) throws IOException {

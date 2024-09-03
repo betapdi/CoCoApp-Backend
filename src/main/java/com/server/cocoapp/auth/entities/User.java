@@ -19,6 +19,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.server.cocoapp.classes.Appointment;
 import com.server.cocoapp.dto.UserDto;
 import com.server.cocoapp.entities.Cart;
 import com.server.cocoapp.entities.CartHistory;
@@ -69,6 +70,9 @@ public class User implements UserDetails {
     @DBRef
     @Builder.Default
     private List<Review> reviews = new ArrayList<>();
+
+    @Builder.Default
+    private List<Appointment> appointments = new ArrayList<>();
 
     @DBRef
     @Builder.Default

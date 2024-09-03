@@ -1,8 +1,13 @@
 package com.server.cocoapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.server.cocoapp.classes.Appointment;
 import com.server.cocoapp.dto.VetDto;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +32,8 @@ public class Vet {
 
     private String degree;
 
-    private long dateAppointment;
+    @Builder.Default
+    private List<Appointment> appointments = new ArrayList<>();
 
     private String description;
 
@@ -38,7 +44,7 @@ public class Vet {
     public void update(VetDto dto) {
         if (dto.getVetName() != null) vetName = dto.getVetName();
         if (dto.getDegree() != null) degree = dto.getDegree();
-        if (dto.getDateAppointment() != 0) dateAppointment = dto.getDateAppointment();
+        if (dto.getAppointments() != null) appointments = dto.getAppointments();
         if (dto.getDescription() != null) description = dto.getDescription();
         
         if (dto.getLocation() != null) {

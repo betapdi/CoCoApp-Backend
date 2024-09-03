@@ -1,8 +1,6 @@
 package com.server.cocoapp.dto;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
 import com.server.cocoapp.auth.entities.User;
 
 import lombok.AllArgsConstructor;
