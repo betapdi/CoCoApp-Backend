@@ -45,6 +45,12 @@ public class NotificationController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<NotificationDto> addNotification(@AuthenticationPrincipal UserDetails userDetails, @RequestPart("notification") NotificationDto notificationDto) {
+        NotificationDto response = notificationService.addNotification(userDetails.getUsername(), notificationDto);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping("/delete/{notificationId}")
     public ResponseEntity<String> deleteNotification(@AuthenticationPrincipal UserDetails userDetails, @PathVariable("notificationId") String notificationId) {
         String response = notificationService.deleteNotification(userDetails.getUsername(), notificationId);

@@ -39,10 +39,8 @@ public class User implements UserDetails {
     @Id
     private String userId;
     
-    @NotBlank(message = "The name field can't be blank")
     private String name;
 
-    @NotBlank(message = "The userName field can't be blank")
     private String username;
     
     @NotBlank(message = "The email field can't be blank")
