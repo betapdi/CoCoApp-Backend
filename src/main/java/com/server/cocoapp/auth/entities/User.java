@@ -19,6 +19,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.server.cocoapp.dto.UserDto;
 import com.server.cocoapp.entities.Cart;
 import com.server.cocoapp.entities.CartHistory;
 import com.server.cocoapp.entities.Notification;
@@ -40,6 +41,10 @@ public class User implements UserDetails {
     private String userId;
     
     private String name;
+
+    private String phoneNumber;
+
+    private String imageName;
 
     private String username;
     
@@ -122,5 +127,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isEnabled;
+    }
+
+    public void update(UserDto dto) {
+        if (dto.getName() != null) name = dto.getName();
+        if (dto.getPhoneNumber() != null) phoneNumber = dto.getPhoneNumber();
     }
 }
