@@ -2,8 +2,6 @@ package com.server.cocoapp.dto;
 
 import java.util.List;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
 import com.server.cocoapp.classes.Appointment;
 import com.server.cocoapp.entities.Vet;
 
