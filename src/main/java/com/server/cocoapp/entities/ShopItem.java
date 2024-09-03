@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.server.cocoapp.classes.Size;
 import com.server.cocoapp.dto.ShopItemDto;
 
 import lombok.AllArgsConstructor;
@@ -46,11 +47,14 @@ public class ShopItem {
     
     private String imageName;
 
+    private Size size;
+
     public void update(ShopItemDto shopItemDto) {
         if (shopItemDto.getName() != null) this.name = shopItemDto.getName();
         if (shopItemDto.getCategory() != null) this.category = shopItemDto.getCategory();
         if (shopItemDto.getPrice() != 0) this.price = shopItemDto.getPrice();
         if (shopItemDto.getStock() != 0) this.stock = shopItemDto.getStock();
         if (shopItemDto.getDescription() != null) this.description = shopItemDto.getDescription();
+        if (shopItemDto.getSize() != null) this.size = shopItemDto.getSize();
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import com.server.cocoapp.classes.Size;
 import com.server.cocoapp.entities.Review;
 import com.server.cocoapp.entities.ShopItem;
 
@@ -26,6 +27,8 @@ public class ShopItemDto {
     private float rating;
     private Integer votes;
 
+    private Size size;
+
     @Value("${base.url}")
     private String imageUrl;
 
@@ -40,6 +43,7 @@ public class ShopItemDto {
         if (item.getPrice() != 0) this.price = item.getPrice();
         if (item.getStock() != 0) this.stock = item.getStock();
         if (item.getDescription() != null) this.description = item.getDescription();
+        if (item.getSize() != null) this.size = item.getSize();
 
         if (item.getReviews() != null) {
             float sumRating = 0;

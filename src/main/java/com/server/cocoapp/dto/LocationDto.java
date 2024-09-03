@@ -22,13 +22,14 @@ public class LocationDto {
     private String id;
     private String name;
     private float price;
-    private Integer startDate;
-    private Integer endDate;
-    private float startTime;
-    private float endTime;
+
+    private String workTime;
 
     private float rating;
     private float votes;
+    private float distance;
+
+    private String type; //"Grooming" or "Boarding" (if it's veterinarian, it's null)
 
     List<ReviewDto> reviews;
 
@@ -36,14 +37,12 @@ public class LocationDto {
     String imageUrl;
 
     public void update(Location loc) {
-        if (loc.getEndDate() != 0) endDate = loc.getEndDate();
-        if (loc.getEndTime() != 0) endTime = loc.getEndTime();
         if (loc.getName() != null) name = loc.getName();
         if (loc.getPrice() != 0) price = loc.getPrice();
-        if (loc.getStartDate() != 0) startDate = loc.getStartDate();
-        if (loc.getStartTime() != 0) startTime = loc.getStartTime();
-
+        if (loc.getWorkTime() != null) workTime = loc.getWorkTime();
         if (loc.getId() != null) id = loc.getId();
+        if (loc.getDistance() != 0) distance = loc.getDistance();
+        if (loc.getType() != null) type = loc.getType();
         
         if (loc.getReviews() != null) {
             votes = loc.getReviews().size();
