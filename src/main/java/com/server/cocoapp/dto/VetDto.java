@@ -24,7 +24,6 @@ public class VetDto {
 
     private String description;
 
-    @DBRef
     private LocationDto location;
 
     public void update(Vet vet) {

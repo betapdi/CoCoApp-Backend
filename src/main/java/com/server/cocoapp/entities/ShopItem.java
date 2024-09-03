@@ -38,7 +38,7 @@ public class ShopItem {
     private float price;
 
     @Builder.Default
-    private int stock = 100;
+    private int stock = 99999;
 
     private String description;
 
@@ -49,6 +49,9 @@ public class ShopItem {
 
     private Size size;
 
+    @Builder.Default
+    private int quantitySold = 50;
+
     public void update(ShopItemDto shopItemDto) {
         if (shopItemDto.getName() != null) this.name = shopItemDto.getName();
         if (shopItemDto.getCategory() != null) this.category = shopItemDto.getCategory();
@@ -56,5 +59,6 @@ public class ShopItem {
         if (shopItemDto.getStock() != 0) this.stock = shopItemDto.getStock();
         if (shopItemDto.getDescription() != null) this.description = shopItemDto.getDescription();
         if (shopItemDto.getSize() != null) this.size = shopItemDto.getSize();
+        if (shopItemDto.getQuantitySold() != 0) this.quantitySold = shopItemDto.getQuantitySold();
     }
 }

@@ -20,6 +20,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.server.cocoapp.entities.Cart;
+import com.server.cocoapp.entities.CartHistory;
 import com.server.cocoapp.entities.Pet;
 import com.server.cocoapp.entities.Review;
 
@@ -81,6 +82,10 @@ public class User implements UserDetails {
     @Builder.Default
     @DBRef
     private Cart cart = new Cart();
+
+    @Builder.Default
+    @DBRef
+    private CartHistory cartHistory = new CartHistory();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

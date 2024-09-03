@@ -32,7 +32,8 @@ public class Vet {
     private String description;
 
     @DBRef
-    private Location location;
+    @Builder.Default
+    private Location location = new Location();
 
     public void update(VetDto dto) {
         if (dto.getVetName() != null) vetName = dto.getVetName();
@@ -41,7 +42,6 @@ public class Vet {
         if (dto.getDescription() != null) description = dto.getDescription();
         
         if (dto.getLocation() != null) {
-            location = new Location();
             location.update(dto.getLocation());
         }
     }

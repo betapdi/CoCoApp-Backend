@@ -4,18 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.server.cocoapp.dto.VetDto;
 import com.server.cocoapp.entities.Vet;
 import com.server.cocoapp.exceptions.VetNotFoundException;
+import com.server.cocoapp.repositories.LocationRepository;
 import com.server.cocoapp.repositories.VetRepository;
 
 import java.io.IOException;
 
+@Service
 public class VetService {
     private VetRepository vetRepository;
     private FileService fileService;
+    private LocationRepository locationRepository;
 
     @Value("${base.url}")
     private String baseUrl;
@@ -23,9 +27,10 @@ public class VetService {
     @Value("${project.static}")
     private String path;
     
-    public VetService(VetRepository vetRepository, FileService fileService) {
+    public VetService(VetRepository vetRepository, FileService fileService, LocationRepository locationRepository) {
         this.vetRepository = vetRepository;
         this.fileService = fileService;
+        this.locationRepository = locationRepository;
     }
 
     public List<VetDto> getAll() {
@@ -54,6 +59,8 @@ public class VetService {
     public VetDto addVet(MultipartFile file, VetDto vetDto) throws IOException {
         Vet vet = new Vet();
         vet.update(vetDto);
+
+        locationRepository.save(vet.getLocation());
 
         if (file != null) {
             String fileName = fileService.uploadFile(path, file);

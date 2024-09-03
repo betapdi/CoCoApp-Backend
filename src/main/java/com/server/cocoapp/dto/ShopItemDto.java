@@ -9,6 +9,7 @@ import com.server.cocoapp.entities.Review;
 import com.server.cocoapp.entities.ShopItem;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,6 +29,8 @@ public class ShopItemDto {
     private Integer votes;
 
     private Size size;
+    
+    private int quantitySold;
 
     @Value("${base.url}")
     private String imageUrl;
@@ -44,6 +47,7 @@ public class ShopItemDto {
         if (item.getStock() != 0) this.stock = item.getStock();
         if (item.getDescription() != null) this.description = item.getDescription();
         if (item.getSize() != null) this.size = item.getSize();
+        if (item.getQuantitySold() != 0) this.quantitySold = item.getQuantitySold();
 
         if (item.getReviews() != null) {
             float sumRating = 0;
