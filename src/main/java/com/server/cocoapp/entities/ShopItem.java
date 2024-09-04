@@ -39,6 +39,8 @@ public class ShopItem {
 
     private String brand;
 
+    private Integer discount;
+
     @Builder.Default
     private int stock = 99999;
 
@@ -63,5 +65,6 @@ public class ShopItem {
         if (shopItemDto.getSize() != null) this.size = shopItemDto.getSize();
         if (shopItemDto.getQuantitySold() != 0) this.quantitySold = shopItemDto.getQuantitySold();
         if (shopItemDto.getBrand() != null) this.brand = shopItemDto.getBrand();
+        if (shopItemDto.getDiscount() != 0) this.discount = shopItemDto.getDiscount();
     }
 }

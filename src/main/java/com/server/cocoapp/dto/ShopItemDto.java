@@ -30,6 +30,7 @@ public class ShopItemDto {
     private Size size;
     
     private int quantitySold;
+    private int discount;
 
     private String brand;
 
@@ -50,6 +51,7 @@ public class ShopItemDto {
         if (item.getSize() != null) this.size = item.getSize();
         if (item.getQuantitySold() != 0) this.quantitySold = item.getQuantitySold();
         if (item.getBrand() != null) this.brand = item.getBrand();
+        if (item.getDiscount() != 0) this.discount = item.getDiscount();
 
         if (item.getReviews() != null) {
             float sumRating = 0;
