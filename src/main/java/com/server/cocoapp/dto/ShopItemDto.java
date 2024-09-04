@@ -60,8 +60,7 @@ public class ShopItemDto {
             rating = sumRating / votes;
         }
 
-        if (item.getImageName() != null) {
-            imageUrl += "/file/" + item.getImageName(); 
-        }
+        if (item.getImageName() != null) imageUrl = "/file/" + item.getImageName(); 
+        
     }
 }

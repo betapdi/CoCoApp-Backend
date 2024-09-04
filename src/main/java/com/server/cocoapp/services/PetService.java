@@ -43,7 +43,6 @@ public class PetService {
             PetDto petDto = new PetDto();
             petDto.update(currPet);
 
-            if (currPet.getImageName() != null) petDto.setImageUrl(baseUrl + "/file/" + currPet.getImageName());
             petDtos.add(petDto);
         }
 
@@ -59,7 +58,6 @@ public class PetService {
             PetDto petDto = new PetDto();
             petDto.update(currPet);
 
-            if (currPet.getImageName() != null) petDto.setImageUrl(baseUrl + "/file/" + currPet.getImageName());
             petDtos.add(petDto);
         }
 
@@ -71,9 +69,6 @@ public class PetService {
         
         PetDto petDto = new PetDto();
         petDto.update(currPet);
-        if (currPet.getImageName() != null) {
-            petDto.setImageUrl(baseUrl + "/file/" + currPet.getImageName());
-        }
 
         return petDto;
     }
@@ -95,13 +90,8 @@ public class PetService {
         userRepository.save(user);
 
         PetDto response = new PetDto();
-        
         response.update(newPet);
         
-        if (newPet.getImageName() != null) {
-            response.setImageUrl(baseUrl + "/file/" + newPet.getImageName());
-        }
-
         return response;
     }
 
@@ -136,7 +126,6 @@ public class PetService {
         PetDto newPetDto = new PetDto();
         newPetDto.update(currPet);
         
-        if (currPet.getImageName() != null) newPetDto.setImageUrl(baseUrl + "/file/" + currPet.getImageName());
         return newPetDto;
     }
 }

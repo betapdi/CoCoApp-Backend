@@ -29,6 +29,7 @@ public class UserDto {
         if (user.getName() != null) name = user.getName();
         if (user.getPhoneNumber() != null) phoneNumber = user.getPhoneNumber();
         if (user.getEmail() != null) email = user.getEmail();
-        if (user.getImageName() != null) imageUrl += "/file/" + user.getImageName();
+        if (user.getImageName() != null) imageUrl = "/file/" + user.getImageName();
+        
     }
 }

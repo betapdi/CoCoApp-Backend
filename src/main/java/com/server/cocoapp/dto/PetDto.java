@@ -49,7 +49,7 @@ public class PetDto {
         if (pet.getEastCoordinate() != 0) this.eastCoordinate = pet.getEastCoordinate();
 
         if (pet.getImageName() != null) {
-            imageUrl += "/file/" + pet.getImageName(); 
+            imageUrl = "/file/" + pet.getImageName(); 
         }
     }
 }

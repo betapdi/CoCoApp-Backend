@@ -60,8 +60,6 @@ public class LocationDto {
             rating = sumRating / votes;
         }
 
-        if (loc.getImageName() != null) {
-            imageUrl += "/file/" + loc.getImageName(); 
-        }
+        if (loc.getImageName() != null) imageUrl = "/file/" + loc.getImageName(); 
     }
 }

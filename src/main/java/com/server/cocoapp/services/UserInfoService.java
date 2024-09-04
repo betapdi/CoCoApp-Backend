@@ -78,7 +78,7 @@ public class UserInfoService {
     }
 
     public UserDto updateUserInfo(UserDto userDto, MultipartFile file) throws IOException {
-        User user = userRepository.findByEmail(userDto.getEmail()).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        User user = userRepository.findById(userDto.getUserId()).orElseThrow(() -> new UserNotFoundException("User not found!"));
 
         user.update(userDto);
 

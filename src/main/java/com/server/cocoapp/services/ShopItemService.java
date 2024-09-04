@@ -36,7 +36,6 @@ public class ShopItemService {
         for (ShopItem item : shopItems) {
             ShopItemDto shopItemDto = new ShopItemDto();
             shopItemDto.update(item);
-            if (item.getImageName() != null) shopItemDto.setImageUrl(baseUrl + "/file/" + item.getImageName());
 
             shopItemDtos.add(shopItemDto);
         }
@@ -50,7 +49,6 @@ public class ShopItemService {
 
         ShopItemDto shopItemDto = new ShopItemDto();
         shopItemDto.update(item);
-        if (item.getImageName() != null) shopItemDto.setImageUrl(baseUrl + "/file/" + item.getImageName());
 
         return shopItemDto;
     }
@@ -70,11 +68,6 @@ public class ShopItemService {
         ShopItemDto newShopItemDto = new ShopItemDto();
         newShopItemDto.update(newItem);
         
-        if (newItem.getImageName() != null) {
-            String imageUrl = baseUrl + "/file/" + newItem.getImageName();
-            newShopItemDto.setImageUrl(imageUrl);
-        }
-
         return newShopItemDto;
     }
 
@@ -108,9 +101,6 @@ public class ShopItemService {
         ShopItemDto newShopItemDto = new ShopItemDto();
         newShopItemDto.update(item);
         
-        String imageUrl = baseUrl + "/file/" + item.getImageName();
-        newShopItemDto.setImageUrl(imageUrl);
-
         return newShopItemDto;
     }
 }

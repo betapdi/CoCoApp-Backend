@@ -37,9 +37,6 @@ public class LocationService {
         for (Location location : locations) {
             LocationDto dto = new LocationDto();
             dto.update(location);
-
-            if (location.getImageName() != null) dto.setImageUrl(baseUrl + "/file/" + location.getImageName());
-
             dtos.add(dto);
         }
 
@@ -51,8 +48,6 @@ public class LocationService {
         
         LocationDto locationDto = new LocationDto();
         locationDto.update(location);
-
-        if (location.getImageName() != null) locationDto.setImageUrl(baseUrl + "/file/" + location.getImageName());
 
         return locationDto;
     }
@@ -71,7 +66,6 @@ public class LocationService {
 
         LocationDto dto = new LocationDto();
         dto.update(newLocation);
-        if (newLocation.getImageName() != null) dto.setImageUrl(baseUrl + "/file/" + newLocation.getImageName());
 
         return dto;
     }
@@ -106,7 +100,6 @@ public class LocationService {
 
         LocationDto dto = new LocationDto();
         dto.update(location);
-        if (location.getImageName() != null) dto.setImageUrl(baseUrl + "/file/" + location.getImageName());
 
         return dto;
     }
