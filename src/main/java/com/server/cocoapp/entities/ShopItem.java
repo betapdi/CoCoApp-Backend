@@ -37,6 +37,8 @@ public class ShopItem {
 
     private float price;
 
+    private String brand;
+
     @Builder.Default
     private int stock = 99999;
 
@@ -60,5 +62,6 @@ public class ShopItem {
         if (shopItemDto.getDescription() != null) this.description = shopItemDto.getDescription();
         if (shopItemDto.getSize() != null) this.size = shopItemDto.getSize();
         if (shopItemDto.getQuantitySold() != 0) this.quantitySold = shopItemDto.getQuantitySold();
+        if (shopItemDto.getBrand() != null) this.brand = shopItemDto.getBrand();
     }
 }

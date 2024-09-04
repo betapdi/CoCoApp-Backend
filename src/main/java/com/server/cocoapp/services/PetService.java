@@ -78,15 +78,14 @@ public class PetService {
         Pet newPet = new Pet();
         newPet.update(petDto);
 
-        user.getPets().add(newPet);
         newPet.setOwnerId(user.getUserId());
-
         if (file != null) {
             String fileName = fileService.uploadFile(path, file);
             newPet.setImageName(fileName);
         }
-        
         petRepository.save(newPet);
+        
+        user.getPets().add(newPet);
         userRepository.save(user);
 
         PetDto response = new PetDto();

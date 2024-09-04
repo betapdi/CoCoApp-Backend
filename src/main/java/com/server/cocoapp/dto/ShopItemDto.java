@@ -31,6 +31,8 @@ public class ShopItemDto {
     
     private int quantitySold;
 
+    private String brand;
+
     @Value("${base.url}")
     private String imageUrl;
 
@@ -47,6 +49,7 @@ public class ShopItemDto {
         if (item.getDescription() != null) this.description = item.getDescription();
         if (item.getSize() != null) this.size = item.getSize();
         if (item.getQuantitySold() != 0) this.quantitySold = item.getQuantitySold();
+        if (item.getBrand() != null) this.brand = item.getBrand();
 
         if (item.getReviews() != null) {
             float sumRating = 0;
