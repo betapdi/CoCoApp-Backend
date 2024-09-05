@@ -20,9 +20,9 @@ services:
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGODB_USERNAME}
       - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGODB_PASSWORD}
-      - ME_CONFIG_MONGODB_SERVER=mongodb
-      - ME_CONFIG_SITE_BASEURL="/"
-      - ME_CONFIG_SITE_HOST="0.0.0.0"
+      - ME_CONFIG_MONGODB_SERVER=mongodb-cont
+      - ME_CONFIG_MONGODB_MAX_ROWS=30
+      - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017
 volumes:
   data: {}
 

@@ -48,11 +48,20 @@ public class Location {
 
     private String type; //"Grooming" or "Boarding" (if it's veterinarian, it's null)
 
+    private float northCoordinate;
+
+    private float eastCoordinate;
+
+    private String address;
+
     public void update(LocationDto dto) {
         if (dto.getWorkTime() != null) workTime = dto.getWorkTime();
         if (dto.getName() != null) name = dto.getName();
         if (dto.getPrice() != 0) price = dto.getPrice();
         if (dto.getDistance() != 0) distance = dto.getDistance();
         if (dto.getType() != null) type = dto.getType();
+        if (dto.getEastCoordinate() != 0) eastCoordinate = dto.getEastCoordinate();
+        if (dto.getNorthCoordinate() != 0) northCoordinate = dto.getNorthCoordinate();
+        if (dto.getAddress() != null) address = dto.getAddress();
     }
 }

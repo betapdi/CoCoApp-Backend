@@ -39,7 +39,7 @@ public class ShopItem {
 
     private String brand;
 
-    private Integer discount;
+    private int discount;
 
     @Builder.Default
     private int stock = 99999;

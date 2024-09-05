@@ -34,6 +34,8 @@ public class PetDto {
 
     private float eastCoordinate;
 
+    private String address;
+
     public void update(Pet pet) {
         if (pet.getId() != null) this.id = pet.getId();
         if (pet.getPetName() != null) this.petName = pet.getPetName();
@@ -47,6 +49,8 @@ public class PetDto {
         if (pet.getAge() != 0) this.age = pet.getAge();
         if (pet.getNorthCoordinate() != 0) this.northCoordinate = pet.getNorthCoordinate();
         if (pet.getEastCoordinate() != 0) this.eastCoordinate = pet.getEastCoordinate();
+
+        if (pet.getAddress() != null) address = pet.getAddress();
 
         if (pet.getImageName() != null) {
             imageUrl = "/file/" + pet.getImageName(); 

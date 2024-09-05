@@ -52,6 +52,8 @@ public class Pet {
 
     private float eastCoordinate;
 
+    private String address;
+
     public void update(PetDto petDto) {
         if (petDto.getPetName() != null) this.petName = petDto.getPetName();
         if (petDto.getBreedName() != null) this.breedName = petDto.getBreedName();
@@ -64,5 +66,6 @@ public class Pet {
         if (petDto.getAge() != 0) this.age = petDto.getAge();
         if (petDto.getNorthCoordinate() != 0) this.northCoordinate = petDto.getNorthCoordinate();
         if (petDto.getEastCoordinate() != 0) this.eastCoordinate = petDto.getEastCoordinate();
+        if (petDto.getAddress() != null) address = petDto.getAddress();
     }
 }

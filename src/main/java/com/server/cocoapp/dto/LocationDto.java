@@ -36,6 +36,12 @@ public class LocationDto {
     @Value("${base.url}")
     String imageUrl;
 
+    private float northCoordinate;
+
+    private float eastCoordinate;
+
+    private String address;
+
     public void update(Location loc) {
         if (loc.getName() != null) name = loc.getName();
         if (loc.getPrice() != 0) price = loc.getPrice();
@@ -43,6 +49,10 @@ public class LocationDto {
         if (loc.getId() != null) id = loc.getId();
         if (loc.getDistance() != 0) distance = loc.getDistance();
         if (loc.getType() != null) type = loc.getType();
+
+        if (loc.getEastCoordinate() != 0) eastCoordinate = loc.getEastCoordinate();
+        if (loc.getNorthCoordinate() != 0) northCoordinate = loc.getNorthCoordinate();
+        if (loc.getAddress() != null) address = loc.getAddress();
         
         if (loc.getReviews() != null) {
             votes = loc.getReviews().size();
