@@ -37,6 +37,8 @@ public class Vet {
 
     private String description;
 
+    private String experience;
+
     @DBRef
     @Builder.Default
     private Location location = new Location();
@@ -46,6 +48,7 @@ public class Vet {
         if (dto.getDegree() != null) degree = dto.getDegree();
         if (dto.getAppointments() != null) appointments = dto.getAppointments();
         if (dto.getDescription() != null) description = dto.getDescription();
+        if (dto.getExperience() != null) experience = dto.getExperience();
         
         if (dto.getLocation() != null) {
             location.update(dto.getLocation());

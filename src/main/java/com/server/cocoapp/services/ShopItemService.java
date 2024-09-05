@@ -58,7 +58,7 @@ public class ShopItemService {
 
         newItem.update(shopItemDto);
 
-        if (file != null) {
+        if (!file.isEmpty()) {
             String fileName = fileService.uploadFile(path, file);
             newItem.setImageName(fileName);
         }
@@ -90,7 +90,7 @@ public class ShopItemService {
         
         item.update(shopItemDto);
 
-        if (file != null) {
+        if (!file.isEmpty()) {
             if (item.getImageName() != null) fileService.deleteFile(path, item.getImageName());
             String newFileName = fileService.uploadFile(path, file);
             item.setImageName(newFileName);

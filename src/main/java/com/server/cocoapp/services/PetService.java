@@ -79,7 +79,7 @@ public class PetService {
         newPet.update(petDto);
 
         newPet.setOwnerId(user.getUserId());
-        if (file != null) {
+        if (!file.isEmpty()) {
             String fileName = fileService.uploadFile(path, file);
             newPet.setImageName(fileName);
         }
@@ -114,7 +114,7 @@ public class PetService {
 
         currPet.update(petDto);
 
-        if (file != null) {
+        if (!file.isEmpty()) {
             if (currPet.getImageName() != null) fileService.deleteFile(path, currPet.getImageName());
             String newFileName = fileService.uploadFile(path, file);
             currPet.setImageName(newFileName);

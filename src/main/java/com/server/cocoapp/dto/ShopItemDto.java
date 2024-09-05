@@ -62,7 +62,8 @@ public class ShopItemDto {
                 reviews.add(review);
             }
 
-            rating = sumRating / votes;
+            if (votes > 0) rating = sumRating / votes;
+            else rating = 0;
         }
 
         if (item.getImageName() != null) imageUrl = "/file/" + item.getImageName(); 

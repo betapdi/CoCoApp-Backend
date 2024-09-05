@@ -67,7 +67,8 @@ public class LocationDto {
                 reviews.add(dto);
             }
 
-            rating = sumRating / votes;
+            if (votes > 0) rating = sumRating / votes;
+            else rating = 0;
         }
 
         if (loc.getImageName() != null) imageUrl = "/file/" + loc.getImageName(); 

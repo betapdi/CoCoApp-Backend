@@ -25,6 +25,8 @@ public class VetDto {
 
     private String description;
 
+    private String experience;
+
     private LocationDto location;
 
     public void update(Vet vet) {
@@ -33,6 +35,7 @@ public class VetDto {
         if (vet.getDegree() != null) degree = vet.getDegree();
         if (vet.getAppointments() != null) appointments = vet.getAppointments();
         if (vet.getDescription() != null) description = vet.getDescription();
+        if (vet.getExperience() != null) experience= vet.getExperience();
         
         if (vet.getLocation() != null) {
             location = new LocationDto();

@@ -66,13 +66,13 @@ public class VetService {
         Vet vet = new Vet();
         vet.update(vetDto);
 
-        locationRepository.save(vet.getLocation());
-
-        if (file != null) {
+        
+        if (!file.isEmpty()) {
             String fileName = fileService.uploadFile(path, file);
             vet.getLocation().setImageName(fileName);
         }
-
+        
+        locationRepository.save(vet.getLocation());
         vetRepository.save(vet);
 
         VetDto response = new VetDto();
@@ -98,7 +98,7 @@ public class VetService {
 
         vet.update(vetDto);
 
-        if (file != null) {
+        if (!file.isEmpty()) {
             if (vet.getLocation().getImageName() != null) {
                 fileService.deleteFile(path, vet.getLocation().getImageName());
             }
@@ -107,6 +107,7 @@ public class VetService {
             vet.getLocation().setImageName(fileName);
         }
 
+        locationRepository.save(vet.getLocation());
         vetRepository.save(vet);
 
         VetDto response = new VetDto();
