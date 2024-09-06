@@ -39,6 +39,13 @@ public class ShowcaseController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<ShowcaseDto> addShowcase(@RequestPart("showcase") ShowcaseDto showcaseDto) {
+        ShowcaseDto response = showcaseService.addShowcase(showcaseDto);
+        
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping("/delete/{showcaseId}")
     public ResponseEntity<ShowcaseDto> delete(@PathVariable("showcaseId") String showcaseId) {
         ShowcaseDto response = showcaseService.deleteShowcase(showcaseId);
