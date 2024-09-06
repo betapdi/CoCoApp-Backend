@@ -116,10 +116,11 @@ public class VetService {
         return response;
     }
 
-    public String addAppointment(Appointment appointment) {
-        User user = userRepository.findById(appointment.getUserId()).orElseThrow(() -> new UserNotFoundException("User not found!"));
+    public String addAppointment(String username, Appointment appointment) {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
         Vet vet = vetRepository.findById(appointment.getVetId()).orElseThrow(() -> new VetNotFoundException("Vet not found!"));
 
+        appointment.setUserId(user.getUserId());
         vet.getAppointments().add(appointment);
         user.getAppointments().add(appointment);
 

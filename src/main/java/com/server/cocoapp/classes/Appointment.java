@@ -1,5 +1,7 @@
 package com.server.cocoapp.classes;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +16,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Appointment {
-    private Integer time;
+    @Id
+    private String id;
+    private long time;
     private String vetId;
     private String userId;
+    private String category;
 }

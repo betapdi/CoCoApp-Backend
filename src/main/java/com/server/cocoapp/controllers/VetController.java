@@ -2,6 +2,8 @@ package com.server.cocoapp.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -66,8 +68,8 @@ public class VetController {
     }
     
     @PostMapping("/addAppointment")
-    public ResponseEntity<String> addAppointment(@RequestPart("appointment") Appointment appointment) {
-        String response = vetService.addAppointment(appointment);
+    public ResponseEntity<String> addAppointment(@AuthenticationPrincipal UserDetails userDetails, @RequestPart("appointment") Appointment appointment) {
+        String response = vetService.addAppointment(userDetails.getUsername(), appointment);
         
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
