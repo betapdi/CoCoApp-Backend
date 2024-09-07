@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.server.cocoapp.dto.ShowcaseDto;
-import com.server.cocoapp.dto.VetDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
