@@ -22,4 +22,5 @@ public class Appointment {
     private String vetId;
     private String userId;
     private String category;
+    private String type;
 }

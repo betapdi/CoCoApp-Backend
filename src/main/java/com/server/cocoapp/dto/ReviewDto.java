@@ -24,11 +24,14 @@ public class ReviewDto {
     private String detail;
     private Integer rating;
 
+    private String userId;
+
     public void update(Review rev) {
         if (rev.getId() != null) id = rev.getId();
         if (rev.getDetail() != null) detail = rev.getDetail();
         if (rev.getTargetId() != null) targetId = rev.getTargetId();
         if (rev.getType() != null) type = rev.getType();
         if (rev.getRating() != 0) rating = rev.getRating();
+        if (rev.getUserId() != null) userId = rev.getUserId();
     }
 }

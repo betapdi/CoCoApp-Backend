@@ -75,7 +75,7 @@ public class VetController {
     }
     
     @GetMapping("/getAppointments/{vetId}")
-    public ResponseEntity<List<Appointment>> addAppointment(@PathVariable("vetId") String vetId) {
+    public ResponseEntity<List<Appointment>> getAppointments(@PathVariable("vetId") String vetId) {
         List<Appointment> response = vetService.getListAppointments(vetId);
         
         return new ResponseEntity<>(response, HttpStatus.OK);

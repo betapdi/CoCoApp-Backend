@@ -25,6 +25,9 @@ public class Review {
     @Id
     @Indexed
     private String id;
+    
+    @NonNull
+    private String userId;
 
     @NonNull
     private String targetId;
@@ -35,6 +38,7 @@ public class Review {
     private String detail;
 
     private Integer rating;
+
 
     public void update(ReviewDto dto) {
         if (dto.getDetail() != null) detail = dto.getDetail();

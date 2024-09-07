@@ -62,6 +62,8 @@ public class ReviewService {
         
         Review review = new Review();
         review.update(reviewDto);
+        review.setUserId(user.getUserId());
+
         Review savedReview = reviewRepository.save(review);
         
         user.getReviews().add(savedReview);

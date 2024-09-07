@@ -1,6 +1,7 @@
 package com.server.cocoapp.dto;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -37,7 +38,7 @@ public class ShopItemDto {
     @Value("${base.url}")
     private String imageUrl;
 
-    private List<Review> reviews;
+    private List<ReviewDto> reviews;
 
     // Constructors, getters, setters (or use Lombok annotations)
 
@@ -54,12 +55,16 @@ public class ShopItemDto {
         if (item.getDiscount() != 0) this.discount = item.getDiscount();
 
         if (item.getReviews() != null) {
+            reviews = new ArrayList<>();
             float sumRating = 0;
             votes = item.getReviews().size();
 
             for (Review review : item.getReviews()) {
+                ReviewDto reviewDto = new ReviewDto();
+                reviewDto.update(review);
+
                 sumRating += review.getRating();
-                reviews.add(review);
+                reviews.add(reviewDto);
             }
 
             if (votes > 0) rating = sumRating / votes;
