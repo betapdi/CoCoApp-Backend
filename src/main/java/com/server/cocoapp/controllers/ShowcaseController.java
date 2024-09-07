@@ -47,8 +47,8 @@ public class ShowcaseController {
     }
 
     @PostMapping("/delete/{showcaseId}")
-    public ResponseEntity<ShowcaseDto> delete(@PathVariable("showcaseId") String showcaseId) {
-        ShowcaseDto response = showcaseService.deleteShowcase(showcaseId);
+    public ResponseEntity<String> delete(@PathVariable("showcaseId") String showcaseId) {
+        String response = showcaseService.deleteShowcase(showcaseId);
         
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

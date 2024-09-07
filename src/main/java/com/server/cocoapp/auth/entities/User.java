@@ -74,6 +74,9 @@ public class User implements UserDetails {
     @Builder.Default
     private List<Appointment> appointments = new ArrayList<>();
 
+    @Builder.Default
+    private List<Appointment> appointmentHistory = new ArrayList<>();
+
     @DBRef
     @Builder.Default
     private List<Notification> notifications = new ArrayList<>();

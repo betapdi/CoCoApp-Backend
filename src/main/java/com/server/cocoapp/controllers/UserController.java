@@ -15,12 +15,17 @@ import com.server.cocoapp.services.UserInfoService;
 
 import lombok.AllArgsConstructor;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.IOException;
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 
 @RestController
@@ -54,5 +59,18 @@ public class UserController {
                                                         @RequestPart("user") UserDto userDto) throws IOException {
         return ResponseEntity.ok(userInfoService.updateUserInfo(userDto, file));
     }
+    
+    @GetMapping("/getAppointmentHistory")
+    public ResponseEntity<List<Appointment>> getAppointmentHistory(@AuthenticationPrincipal UserDetails userDetails) {
+        List<Appointment> response = userInfoService.getAppointmentHistory(userDetails.getUsername());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/addAppointmentHistory")
+    public ResponseEntity<String> addAppointmentHistory(@AuthenticationPrincipal UserDetails userDetails, Appointment appointment) {
+        String response = userInfoService.addAppointmentHistory(userDetails.getUsername(), appointment);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    
     
 }

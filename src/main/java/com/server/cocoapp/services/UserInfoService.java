@@ -98,4 +98,20 @@ public class UserInfoService {
 
         return response;
     }
+
+    public String addAppointmentHistory(String username, Appointment appointment) {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
+
+        appointment.setUserId(user.getUserId());
+        user.getAppointmentHistory().add(appointment);
+
+        userRepository.save(user);
+
+        return "Appointment added with id: " + appointment.getId();
+    }
+
+    public List<Appointment> getAppointmentHistory(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        return user.getAppointmentHistory();
+    }
 }
