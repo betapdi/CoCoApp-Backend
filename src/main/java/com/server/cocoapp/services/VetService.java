@@ -99,9 +99,9 @@ public class VetService {
         vet.update(vetDto);
 
         if (!file.isEmpty()) {
-            if (vet.getLocation().getImageName() != null) {
-                fileService.deleteFile(path, vet.getLocation().getImageName());
-            }
+            // if (vet.getLocation().getImageName() != null) {
+            //     fileService.deleteFile(path, vet.getLocation().getImageName());
+            // }
 
             String fileName = fileService.uploadFile(path, file);
             vet.getLocation().setImageName(fileName);

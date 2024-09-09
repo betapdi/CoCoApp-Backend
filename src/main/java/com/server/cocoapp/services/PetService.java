@@ -114,8 +114,8 @@ public class PetService {
 
         currPet.update(petDto);
 
-        if (!file.isEmpty()) {
-            if (currPet.getImageName() != null) fileService.deleteFile(path, currPet.getImageName());
+        if (file != null) {
+            // if (currPet.getImageName() != null) fileService.deleteFile(path, currPet.getImageName());
             String newFileName = fileService.uploadFile(path, file);
             currPet.setImageName(newFileName);
         }

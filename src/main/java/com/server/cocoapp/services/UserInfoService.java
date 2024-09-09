@@ -83,9 +83,9 @@ public class UserInfoService {
         user.update(userDto);
 
         if (file != null) {
-            if (user.getImageName() != null) {
-                fileService.deleteFile(path, user.getImageName());
-            }
+            // if (user.getImageName() != null) {
+            //     fileService.deleteFile(path, user.getImageName());
+            // }
 
             String fileName = fileService.uploadFile(path, file);
             user.setImageName(fileName);

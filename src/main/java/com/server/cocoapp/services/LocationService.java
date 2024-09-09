@@ -88,9 +88,9 @@ public class LocationService {
         location.update(locationDto);
 
         if (!file.isEmpty()) {
-            if (location.getImageName() != null) {
-                fileService.deleteFile(path, location.getImageName());
-            }
+            // if (location.getImageName() != null) {
+            //     fileService.deleteFile(path, location.getImageName());
+            // }
 
             String fileName = fileService.uploadFile(path, file);
             location.setImageName(fileName);

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.server.cocoapp.repositories.CartHistoryRepository;
 import com.server.cocoapp.repositories.CartRepository;
+import com.server.cocoapp.repositories.LocationRepository;
 import com.server.cocoapp.repositories.ReviewRepository;
 import com.server.cocoapp.repositories.ShopItemRepository;
 import com.server.cocoapp.services.ReviewService;
@@ -17,6 +18,7 @@ import com.server.cocoapp.auth.entities.User;
 import com.server.cocoapp.auth.entities.UserRole;
 import com.server.cocoapp.auth.repositories.UserRepository;
 import com.server.cocoapp.dto.ReviewDto;
+import com.server.cocoapp.entities.Location;
 import com.server.cocoapp.entities.ShopItem;
 
 import java.util.List;
@@ -29,11 +31,11 @@ public class CoCoApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(ReviewRepository reviewRepository, UserRepository userRepository, ShopItemRepository shopItemRepository, ReviewService reviewService) {
+	CommandLineRunner runner(ReviewRepository reviewRepository, UserRepository userRepository, LocationRepository locationRepository, ReviewService reviewService) {
 		return args -> {
 			RandomGenerator randomGenerator = new RandomGenerator();
 
-			List<ShopItem> shopItems = shopItemRepository.findAll();
+			List<Location> locations = locationRepository.findAll();
 
 			// List<User> users = userRepository.findAll();
 			// for (User user : users) {
@@ -43,8 +45,8 @@ public class CoCoApplication {
 
 
 			
-			// for (ShopItem item : shopItems) {
-			// 	if (item.getReviews() == null) item.setReviews(new ArrayList<>());
+			// for (Location location : locations) {
+			// 	if (location.getReviews() == null) location.setReviews(new ArrayList<>());
 				
 			// 	int numReviews = randomGenerator.genInt(50, 200);
 			// 	int oneStars = randomGenerator.genInt(5, 15) * numReviews / 100;
@@ -55,8 +57,8 @@ public class CoCoApplication {
 			// 	for (int i = 1; i <= numReviews; ++i) {
 			// 		ReviewDto review = new ReviewDto();
 			// 		review.setDetail("The thing I like best about COCO is the amount of time it has saved while trying to manage my three pets.");
-			// 		review.setType("shopItem");
-			// 		review.setTargetId(item.getId());
+			// 		review.setType("location");
+			// 		review.setTargetId(location.getId());
 					
 			// 		if (i <= oneStars) review.setRating(1);
 			// 		else if (i <= oneStars + twoStars) review.setRating(2);
