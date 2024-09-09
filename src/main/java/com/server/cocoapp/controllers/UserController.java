@@ -34,6 +34,11 @@ public class UserController {
         return ResponseEntity.ok(userInfoService.getInfo(userDetails.getUsername()));
     }
 
+    @GetMapping("/getInfoId")
+    public ResponseEntity<UserDto> fetchUserInfoId(@RequestPart("userId") String userId) {
+        return ResponseEntity.ok(userInfoService.getInfoId(userId));
+    }
+
     @GetMapping("/getPets")
     public ResponseEntity<List<PetDto>> fetchPets(@AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(userInfoService.getPets(userDetails.getUsername()));

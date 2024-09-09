@@ -13,6 +13,7 @@ import com.server.cocoapp.repositories.LocationRepository;
 import com.server.cocoapp.repositories.ReviewRepository;
 import com.server.cocoapp.repositories.ShopItemRepository;
 import com.server.cocoapp.services.ReviewService;
+import com.server.cocoapp.services.ShopItemService;
 import com.server.cocoapp.utils.RandomGenerator;
 import com.server.cocoapp.auth.entities.User;
 import com.server.cocoapp.auth.entities.UserRole;
@@ -31,11 +32,20 @@ public class CoCoApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(ReviewRepository reviewRepository, UserRepository userRepository, LocationRepository locationRepository, ReviewService reviewService) {
+	CommandLineRunner runner(UserRepository userRepository, ShopItemRepository shopItemRepository, ShopItemService shopItemService) {
 		return args -> {
 			RandomGenerator randomGenerator = new RandomGenerator();
 
-			List<Location> locations = locationRepository.findAll();
+			// List<ShopItem> shopItems = shopItemRepository.findAll();
+			
+			// for (ShopItem item : shopItems) {
+			// 	if (item.getDiscount() == 0) {
+			// 		item.setDiscount(randomGenerator.genInt(5, 20));
+			// 	}
+
+			// 	shopItemRepository.save(item);
+			// }
+			
 
 			// List<User> users = userRepository.findAll();
 			// for (User user : users) {

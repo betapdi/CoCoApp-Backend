@@ -37,7 +37,7 @@ public class Review {
     
     private String detail;
 
-    private Integer rating;
+    private int rating;
 
 
     public void update(ReviewDto dto) {

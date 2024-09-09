@@ -44,6 +44,15 @@ public class UserInfoService {
         return response;
     }
 
+    public UserDto getInfoId(String userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found!"));
+        
+        UserDto response = new UserDto();
+        response.update(user);
+
+        return response;
+    }
+
     public List<PetDto> getPets(String username) {
         User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
         List<PetDto> dtos = new ArrayList<>();

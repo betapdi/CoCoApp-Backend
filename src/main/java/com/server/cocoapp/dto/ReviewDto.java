@@ -22,7 +22,7 @@ public class ReviewDto {
     private String targetId;
 
     private String detail;
-    private Integer rating;
+    private int rating;
 
     private String userId;
 
