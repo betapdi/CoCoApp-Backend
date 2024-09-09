@@ -1,6 +1,7 @@
 package com.server.cocoapp.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -34,8 +35,8 @@ public class UserController {
         return ResponseEntity.ok(userInfoService.getInfo(userDetails.getUsername()));
     }
 
-    @GetMapping("/getInfoId")
-    public ResponseEntity<UserDto> fetchUserInfoId(@RequestPart("userId") String userId) {
+    @GetMapping("/getInfoId/{userId}")
+    public ResponseEntity<UserDto> fetchUserInfoId(@PathVariable("userId") String userId) {
         return ResponseEntity.ok(userInfoService.getInfoId(userId));
     }
 
