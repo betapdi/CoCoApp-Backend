@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CartItemDto {
+    private String id;
     private ShopItemDto item;
     private Integer quantity;
 
@@ -22,5 +23,7 @@ public class CartItemDto {
         }
 
         quantity = cartItem.getQuantity();
+
+        if (cartItem.getId() != null) id = cartItem.getId();
     }
 }

@@ -1,5 +1,6 @@
 package com.server.cocoapp.classes;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import com.server.cocoapp.entities.ShopItem;
@@ -18,6 +19,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CartItem {
+    @Id
+    private String id;
+
     @DBRef
     private ShopItem item;
 

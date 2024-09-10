@@ -7,19 +7,27 @@ import com.server.cocoapp.auth.repositories.UserRepository;
 import com.server.cocoapp.classes.CartItem;
 import com.server.cocoapp.dto.CartDto;
 import com.server.cocoapp.dto.CartItemDto;
+import com.server.cocoapp.entities.Cart;
 import com.server.cocoapp.entities.ShopItem;
+import com.server.cocoapp.exceptions.CartItemNotFoundException;
 import com.server.cocoapp.exceptions.ShopItemNotFoundException;
 import com.server.cocoapp.exceptions.UserNotFoundException;
+import com.server.cocoapp.repositories.CartItemRepository;
+import com.server.cocoapp.repositories.CartRepository;
 import com.server.cocoapp.repositories.ShopItemRepository;
 
 @Service
 public class CartService {
     private final UserRepository userRepository;
     private final ShopItemRepository shopItemRepository;
+    private final CartRepository cartRepository;
+    private final CartItemRepository cartItemRepository;
 
-    public CartService(UserRepository userRepository, ShopItemRepository shopItemRepository) {
+    public CartService(UserRepository userRepository, ShopItemRepository shopItemRepository, CartRepository cartRepository, CartItemRepository cartItemRepository) {
         this.userRepository = userRepository;
         this.shopItemRepository = shopItemRepository;
+        this.cartRepository = cartRepository;
+        this.cartItemRepository = cartItemRepository;
     }
 
     public CartDto getCart(String username) {
@@ -39,8 +47,10 @@ public class CartService {
         cartItem.setItem(item);
         cartItem.setQuantity(dto.getQuantity());
 
+        cartItemRepository.save(cartItem);
+
         user.getCart().getItems().add(cartItem);
-        userRepository.save(user);
+        cartRepository.save(user.getCart());
 
         CartDto cartDto = new CartDto();
         cartDto.update(user.getCart());
@@ -50,18 +60,21 @@ public class CartService {
 
     public CartDto updateCartItem(String username, CartItemDto dto) { //cartItem.item just need an item id here
         User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
-        ShopItem item = shopItemRepository.findById(dto.getItem().getId()).orElseThrow(() -> new ShopItemNotFoundException("ShopItem not found!"));
+        CartItem cartItem = cartItemRepository.findById(dto.getId()).orElseThrow(() -> new CartItemNotFoundException("CartItem not found!"));
+        Cart cart = user.getCart();
+        
+        cart.getItems().removeIf(currCartItem -> currCartItem.getId().equals(dto.getId()));
 
-        user.getCart().getItems().removeIf(currCartItem -> currCartItem.getItem().getId().equals(dto.getItem().getId()));
         if (dto.getQuantity() > 0) {
-            CartItem newCartItem = new CartItem();
-            newCartItem.setItem(item);
-            newCartItem.setQuantity(dto.getQuantity());
+            cartItem.setQuantity(dto.getQuantity());
+            cartItemRepository.save(cartItem);
 
-            user.getCart().getItems().add(newCartItem);
+            cart.getItems().add(cartItem);
         }
 
-        userRepository.save(user);
+        else cartRepository.deleteById(dto.getId());
+
+        cartRepository.save(cart);
 
         CartDto cartDto = new CartDto();
         cartDto.update(user.getCart());
