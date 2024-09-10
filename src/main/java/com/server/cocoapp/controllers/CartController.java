@@ -30,6 +30,13 @@ public class CartController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/getCartItem")
+    public ResponseEntity<CartItemDto> getCartItem(@AuthenticationPrincipal UserDetails userDetails, @RequestPart("cartItemId") String cartItemId) {
+        CartItemDto response = cartService.getCartItem(userDetails.getUsername(), cartItemId);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping("/addItem")
     public ResponseEntity<CartDto> addCartItem(@AuthenticationPrincipal UserDetails userDetails, @RequestPart CartItemDto cartItemDto) {
         CartDto response = cartService.addCartItem(userDetails.getUsername(), cartItemDto);

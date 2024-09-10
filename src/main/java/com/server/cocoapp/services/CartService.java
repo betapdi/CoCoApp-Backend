@@ -39,6 +39,15 @@ public class CartService {
         return cartDto;
     }
 
+    public CartItemDto getCartItem(String username, String cartItemId) {
+        CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(() -> new CartItemNotFoundException("CartItem not found!"));
+        
+        CartItemDto dto = new CartItemDto();
+        dto.update(cartItem);
+        
+        return dto;
+    }
+
     public CartDto addCartItem(String username, CartItemDto dto) {//cartItem.item just need an item id here
         User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
         ShopItem item = shopItemRepository.findById(dto.getItem().getId()).orElseThrow(() -> new ShopItemNotFoundException("ShopItem not found!"));
