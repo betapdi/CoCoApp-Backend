@@ -16,8 +16,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Appointment {
-    @Id
-    private String id;
     private long time;
     private String vetId;
     private String userId;

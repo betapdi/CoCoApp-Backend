@@ -73,6 +73,13 @@ public class VetController {
         
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PostMapping("/deleteAppointment")
+    public ResponseEntity<String> deleteAppointment(@AuthenticationPrincipal UserDetails userDetails, @RequestPart("appointment") Appointment appointment) {
+        String response = vetService.deleteAppointment(userDetails.getUsername(), appointment);
+        
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
     
     @GetMapping("/getAppointments/{vetId}")
     public ResponseEntity<List<Appointment>> getAppointments(@PathVariable("vetId") String vetId) {

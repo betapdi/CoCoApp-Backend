@@ -116,7 +116,7 @@ public class UserInfoService {
 
         userRepository.save(user);
 
-        return "Appointment added with id: " + appointment.getId();
+        return "Appointment added with time: " + appointment.getTime();
     }
 
     public List<Appointment> getAppointmentHistory(String username) {

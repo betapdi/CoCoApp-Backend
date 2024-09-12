@@ -127,20 +127,20 @@ public class VetService {
         vetRepository.save(vet);
         userRepository.save(user);
 
-        return "Appointment added with id: " + appointment.getId();
+        return "Appointment added with time: " + appointment.getTime();
     }
 
     public String deleteAppointment(String username, Appointment appointment) {
         User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
         Vet vet = vetRepository.findById(appointment.getVetId()).orElseThrow(() -> new VetNotFoundException("Vet not found!"));
 
-        user.getAppointments().removeIf(obj -> (obj.getId().equals(appointment.getId())));
-        vet.getAppointments().removeIf(obj -> (obj.getId().equals(appointment.getId())));
+        user.getAppointments().removeIf(obj -> (obj.equals(appointment)));
+        vet.getAppointments().removeIf(obj -> (obj.equals(appointment)));
 
         userRepository.save(user);
         vetRepository.save(vet);
 
-        return "Appointment deleted with id: " + appointment.getId();
+        return "Appointment deleted with time: " + appointment.getTime();
     }
 
     public List<Appointment> getListAppointments(String vetId) {
