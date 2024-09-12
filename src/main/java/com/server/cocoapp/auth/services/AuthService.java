@@ -13,6 +13,8 @@ import com.server.cocoapp.auth.repositories.UserRepository;
 import com.server.cocoapp.auth.utils.AuthResponse;
 import com.server.cocoapp.auth.utils.LoginRequest;
 import com.server.cocoapp.auth.utils.RegisterRequest;
+import com.server.cocoapp.entities.Cart;
+import com.server.cocoapp.entities.CartHistory;
 import com.server.cocoapp.repositories.CartHistoryRepository;
 import com.server.cocoapp.repositories.CartRepository;
 
@@ -40,13 +42,25 @@ public class AuthService {
                 .role(UserRole.USER)
                 .build();
 
-        user.getCart().setUserId(user.getUserId());
+        user.setCart(new Cart());
         cartRepository.save(user.getCart());
 
-        user.getCartHistory().setUserId(user.getUserId());
+        user.setCartHistory(new CartHistory());
+        cartHistoryRepository.save(user.getCartHistory());
+        
+        // System.out.println(user);
+        
+        User savedUser = userRepository.save(user);
+        savedUser.getCart().setUserId(user.getUserId());
+        savedUser.getCartHistory().setUserId(user.getUserId());
+
+        // System.out.println(savedUser);
+        
+        cartRepository.save(user.getCart());
         cartHistoryRepository.save(user.getCartHistory());
 
-        User savedUser = userRepository.save(user);
+        // System.out.println(savedUser);
+
         var accessToken = jwtService.generateToken(savedUser);
         var refreshToken = refreshTokenService.createRefreshToken(savedUser.getEmail());
 

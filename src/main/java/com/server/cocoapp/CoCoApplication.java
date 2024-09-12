@@ -12,6 +12,7 @@ import com.server.cocoapp.repositories.CartRepository;
 import com.server.cocoapp.repositories.LocationRepository;
 import com.server.cocoapp.repositories.ReviewRepository;
 import com.server.cocoapp.repositories.ShopItemRepository;
+import com.server.cocoapp.services.LocationService;
 import com.server.cocoapp.services.ReviewService;
 import com.server.cocoapp.services.ShopItemService;
 import com.server.cocoapp.utils.RandomGenerator;
@@ -20,7 +21,10 @@ import com.server.cocoapp.auth.entities.UserRole;
 import com.server.cocoapp.auth.repositories.UserRepository;
 import com.server.cocoapp.dto.ReviewDto;
 import com.server.cocoapp.entities.Location;
+import com.server.cocoapp.entities.Review;
 import com.server.cocoapp.entities.ShopItem;
+import com.server.cocoapp.exceptions.LocationNotFoundException;
+import com.server.cocoapp.exceptions.UserNotFoundException;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -32,18 +36,18 @@ public class CoCoApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(UserRepository userRepository, ShopItemRepository shopItemRepository, ShopItemService shopItemService) {
+	CommandLineRunner runner(UserRepository userRepository, ReviewRepository reviewRepository, LocationRepository locationRepository) {
 		return args -> {
 			RandomGenerator randomGenerator = new RandomGenerator();
 
-			// List<ShopItem> shopItems = shopItemRepository.findAll();
-			
-			// for (ShopItem item : shopItems) {
-			// 	if (item.getDiscount() == 0) {
-			// 		item.setDiscount(randomGenerator.genInt(5, 20));
-			// 	}
+			// List<Review> reviews = reviewRepository.findAll();
 
-			// 	shopItemRepository.save(item);
+			// for (Review review : reviews) {
+			// 	if (review.getTargetId().equals("66d9f1dc10181a1c1e410bed")) {
+			// 		Location location = locationRepository.findById(review.getTargetId()).orElseThrow(() -> new LocationNotFoundException("Location not found!"));
+			// 		location.getReviews().add(review);
+			// 		locationRepository.save(location);
+			// 	}
 			// }
 			
 

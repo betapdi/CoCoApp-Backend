@@ -41,10 +41,9 @@ public class FileController {
         return new ResponseEntity<>("File uploaded: " + uploadedFileName, HttpStatus.OK);
     }
     
-    @GetMapping("/{fileName}")
+    @RequestMapping(value = "/{fileName}", produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_PNG_VALUE})
     public void serveFileHandler(@PathVariable String fileName, HttpServletResponse response) throws IOException {
         InputStream resourceFile = fileService.getResoureFile(path, fileName);
-        response.setContentType(MediaType.IMAGE_PNG_VALUE);
 
         StreamUtils.copy(resourceFile, response.getOutputStream());
     }

@@ -134,8 +134,8 @@ public class VetService {
         User user = userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("User not found!"));
         Vet vet = vetRepository.findById(appointment.getVetId()).orElseThrow(() -> new VetNotFoundException("Vet not found!"));
 
-        user.getAppointments().removeIf(obj -> (obj.equals(appointment)));
-        vet.getAppointments().removeIf(obj -> (obj.equals(appointment)));
+        user.getAppointments().removeIf(obj -> (obj.getTime() == appointment.getTime() && obj.getVetId().equals(appointment.getVetId())));
+        vet.getAppointments().removeIf(obj -> (obj.getTime() == appointment.getTime() && obj.getVetId().equals(appointment.getVetId())));
 
         userRepository.save(user);
         vetRepository.save(vet);

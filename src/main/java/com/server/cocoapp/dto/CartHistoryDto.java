@@ -22,6 +22,8 @@ public class CartHistoryDto {
     private String userId;
 
     public void update(Cart cart) {
+        if (cart.getId() != null) id = cart.getId();
+        
         if (cart.getItems() != null) {
             items = new ArrayList<>();
             
