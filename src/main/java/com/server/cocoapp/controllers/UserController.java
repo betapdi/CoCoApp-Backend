@@ -68,7 +68,7 @@ public class UserController {
     }
 
     @PostMapping("/addAppointmentHistory")
-    public ResponseEntity<String> addAppointmentHistory(@AuthenticationPrincipal UserDetails userDetails, Appointment appointment) {
+    public ResponseEntity<String> addAppointmentHistory(@AuthenticationPrincipal UserDetails userDetails, @RequestPart("appointment") Appointment appointment) {
         String response = userInfoService.addAppointmentHistory(userDetails.getUsername(), appointment);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
