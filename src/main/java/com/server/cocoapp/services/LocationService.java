@@ -46,6 +46,8 @@ public class LocationService {
     public LocationDto getLocation(String locationId) {
         Location location = locationRepository.findById(locationId).orElseThrow(() -> new LocationNotFoundException("Location not found!"));
         
+        System.out.println(location.getReviews());
+
         LocationDto locationDto = new LocationDto();
         locationDto.update(location);
 

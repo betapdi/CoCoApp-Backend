@@ -43,7 +43,7 @@ public class CoCoApplication {
 			// List<Review> reviews = reviewRepository.findAll();
 
 			// for (Review review : reviews) {
-			// 	if (review.getTargetId().equals("66d9f1dc10181a1c1e410bed")) {
+			// 	if (review.getTargetId().equals("66daa83ece738273ecd618aa")) {
 			// 		Location location = locationRepository.findById(review.getTargetId()).orElseThrow(() -> new LocationNotFoundException("Location not found!"));
 			// 		location.getReviews().add(review);
 			// 		locationRepository.save(location);
